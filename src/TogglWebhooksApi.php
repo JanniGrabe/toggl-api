@@ -35,7 +35,7 @@ class TogglWebhooksApi {
         $this->apiToken = $apiToken;
         $this->workspaceId = $workspaceId;
         $this->client = new Client([
-            'base_uri' => 'https://track.toggl.com/webhooks/api/v1',
+            'base_uri' => 'https://track.toggl.com/webhooks/api/v1/',
             'auth' => [$this->apiToken, 'api_token'],
         ]);
     }
