@@ -1,5 +1,5 @@
 {
-	"name": "morningtrain/toggl-api",
+	"name": "JanniGrabe/toggl-api",
     "type": "library",
     "description": "A complete native php wrapper for the Toggl API",
     "keywords": ["toggl","api", "php"],
@@ -10,6 +10,11 @@
             "name": "Bjarne Bonde",
             "email": "bb@morningtain.dk",
             "homepage": "http://morningtrain.dk/",
+            "role": "Developer"
+        },
+        {
+            "name": "Jan-Niklas Grabe",
+            "email": "j.grabe@a-coding-project.de",
             "role": "Developer"
         }
     ],
