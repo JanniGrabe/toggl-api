@@ -66,7 +66,7 @@ class TogglWebhooksApi {
      * @see https://github.com/toggl/toggl_api_docs/blob/master/webhooks.md#create-a-subscription
      */
     public function createSubscription($subscription) {
-        return $this->POST('subscriptions/' . $this->workspaceId, ['subscription' => $subscription]);
+        return $this->POST('subscriptions/' . $this->workspaceId, $subscription);
     }
 
     /**
@@ -78,7 +78,7 @@ class TogglWebhooksApi {
      * @return bool|mixed|object
      */
     public function updateSubscription($subscriptionId, $subscription) {
-        return $this->PUT('subscriptions/' . $this->workspaceId . '/' . $subscriptionId, ['subscription' => $subscription]);
+        return $this->PUT('subscriptions/' . $this->workspaceId . '/' . $subscriptionId, $subscription);
     }
 
     /**
