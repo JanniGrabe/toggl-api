@@ -6,9 +6,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
 /**
- * Wrapper for the Toggl Api.
+ * Wrapper for the Toggl Webhooks Api.
  *
- * @see https://github.com/toggl/toggl_api_docs/blob/master/toggl_api.md
+ * @see https://github.com/toggl/toggl_api_docs/blob/master/webhooks.md
  */
 class TogglWebhooksApi {
     /**
@@ -59,7 +59,8 @@ class TogglWebhooksApi {
      * - url_callback: The url toggl should call on event (string, required)
      * - event_filters: filter events by entity and action (array, required)
      * - enabled: enable subscription (boolean, required)
-     * - description: description of the subscription (not required)
+     * - secret: validate received events (string, not required, if omitted auto-assigned)
+     * - description: description of the subscription (string, required, unique in workspace)
      *
      * @return bool|mixed|object
      *
@@ -93,14 +94,36 @@ class TogglWebhooksApi {
     }
 
     /**
-     * Ping a subscription
+     * Ping a subscription.
      *
      * @param int $subscriptionId
      *
      * @return bool|mixed|object
      */
     public function pingSubscription($subscriptionId) {
-        return $this->GET('ping/' . $this->workspaceId . '/' . $subscriptionId);
+        return $this->POST('ping/' . $this->workspaceId . '/' . $subscriptionId);
+    }
+
+    /**
+     * Get information about matching events.
+     *
+     * @param int $subscriptionId
+     *
+     * @return bool|mixed|object
+     */
+    public function getEventsInfo($subscriptionId) {
+        return $this->GET('subscriptions/' . $this->workspaceId . '/' . $subscriptionId . '/events');
+    }
+
+    /**
+     * Get information about matching events.
+     *
+     * @param int $subscriptionId
+     *
+     * @return bool|mixed|object
+     */
+    public function validateEndpoint($subscriptionId, $validationCode) {
+        return $this->GET('validate/' . $this->workspaceId . '/' . $subscriptionId . '/' . $validationCode);
     }
 
     /**
